@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "7a681286-9039-4346-8cde-eda668ba4c60",
+		"name": "Login Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13963376"
+	},
+	"item": [
+		{
+			"name": "Check login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set('accessToken',pm.response.json().accessToken)\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api-prod.hezzl.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "accept-language",
+						"value": "en,ru-RU;q=0.9,ru;q=0.8,en-US;q=0.7,az;q=0.6"
+					},
+					{
+						"key": "authorization",
+						"value": ""
+					},
+					{
+						"key": "cache-control",
+						"value": "no-cache"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "origin",
+						"value": "https://play.hezzl.com"
+					},
+					{
+						"key": "pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "referer",
+						"value": "https://play.hezzl.com/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-site"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"{{email}}\",\r\n    \"type\": \"email\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/v1/game/{{campaignId}}/check-login",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"v1",
+						"game",
+						"{{campaignId}}",
+						"check-login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConfirmCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api-prod.hezzl.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "accept-language",
+						"value": "en,ru-RU;q=0.9,ru;q=0.8,en-US;q=0.7,az;q=0.6"
+					},
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJSU0ExXzUiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiemlwIjoiREVGIn0.MuQO3Qu_Tieq6KHLXUCK-DcWDYxq-T2qEdAN6Z3c2aFEv2MQwfPGrhE9hWyNvmrUQSDds_2RTYmA33tCodQ8GN-YLgcG0gocw3ygkIQrhRbnl0_rByrKHp9Rcohl_kGa2o7nb3o7CQeBkHUlgvDN9XvSj6sz0GSK68piixahxU84pnAScCDjPIazH7RVNhEOLUeXsMk_IZ-dxBvQpjTx9RniMN40fet0VLBykIgt1pFTXYxpbZ3rpKorAPeT1KHTBWmQfX6BV_R8ZPwIHRbhL3Z8WiLtQlPz-RLAurxKAUetvAsrxdpnKc7FS_K8ZrMeyiuUWFtXnV4dDp34Gjr5wA.vodHozXKS_MQfPrXXq-_mQ.yFBwAi8qb6R_v7RImCYG5IPLUfFr9x7P0ZQ4sahMyn9sBAPTcGZARZqA5PllO7LcLqJCHivt0l8gKaKYh6930MXmLtcIzOf_6vpx6d2dIFY1mJ55Q36hU7Hsy9jCPt7NH4WuyByCkANnO0VfdHy9OEZbhJyFld9dEY9iyQne7HoXSZxu5Fsid_Vw2m7Xd_K-SefevBAABSQoX8A0X62x53fmWCqh-jkhU3pgc6iG-9gnU1ATteHlHwpMccOzWObdwWTX7i9cQbSFfb6fnAKdi85NO43QZIy5tF7Avwwz3Z4kip2FneTIy2PEGsYx-mh0spH_TgDeU--HU-1i1vhDkVZWJpmHwCAVEYcQ0LFSpQH9rFLqnWGs60bDF3pHClh68gjJr3wYsO-5kw_BRp4i5g.7Fj8uMLO6Y2nylME6mo0Xg"
+					},
+					{
+						"key": "cache-control",
+						"value": "no-cache"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "origin",
+						"value": "https://play.hezzl.com"
+					},
+					{
+						"key": "pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "referer",
+						"value": "https://play.hezzl.com/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-site"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"code\":\"{{password}}\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/v1/game/{{campaignId}}/confirm-code",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"v1",
+						"game",
+						"{{campaignId}}",
+						"confirm-code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INIT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set('timeZone',pm.response.json().time)\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test('Check data in response',function(){\r",
+							"\r",
+							"    const data = pm.response.json().data\r",
+							"    pm.expect(data).to.be.exist\r",
+							"})\r",
+							"\r",
+							"pm.test('Check auth in data',function(){\r",
+							"\r",
+							"    const auth = pm.response.json().data.auth\r",
+							"    pm.expect(auth).to.be.exist\r",
+							"})\r",
+							"\r",
+							"\r",
+							"\r",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api-prod.hezzl.com"
+					},
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "accept-language",
+						"value": "en,ru-RU;q=0.9,ru;q=0.8,en-US;q=0.7,az;q=0.6"
+					},
+					{
+						"key": "cache-control",
+						"value": "no-cache"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "origin",
+						"value": "https://play.hezzl.com"
+					},
+					{
+						"key": "pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "referer",
+						"value": "https://play.hezzl.com/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-site"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://api-prod.hezzl.com/gw/v1/game/145602/init",
+					"protocol": "https",
+					"host": [
+						"api-prod",
+						"hezzl",
+						"com"
+					],
+					"path": [
+						"gw",
+						"v1",
+						"game",
+						"145602",
+						"init"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
